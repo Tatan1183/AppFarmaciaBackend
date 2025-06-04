@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"; // Importa mongoose para definir el esquema
 
 const ventaSchema = new mongoose.Schema({
   fecha: String,
@@ -17,4 +17,5 @@ const ventaSchema = new mongoose.Schema({
   metodo_pago: String,
 });
 
+//Permite interactuar con la colección "Ventas" en la base de datos
 export default mongoose.model("Venta", ventaSchema);

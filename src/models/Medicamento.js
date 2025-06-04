@@ -1,4 +1,7 @@
-import mongoose from 'mongoose';
+//💊MODELO DE MEDICAMENTOS PARA 'AppFarmacia'
+//Este archivo define la estructura del documento "Medicamentos"
+
+import mongoose from "mongoose"; // Importa mongoose para definir el esquema
 
 const medicamentoSchema = new mongoose.Schema({
   nombre: String,
@@ -8,7 +11,8 @@ const medicamentoSchema = new mongoose.Schema({
   stock: Number,
   laboratorio: String,
   fecha_vencimiento: String,
-  presentacion: String
+  presentacion: String,
 });
 
-export default mongoose.model('Medicamento', medicamentoSchema);
+// Permite interactuar con la colección "Medicamentos" en la base de datos
+export default mongoose.model("Medicamento", medicamentoSchema);
