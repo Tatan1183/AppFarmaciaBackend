@@ -1,4 +1,4 @@
-import Medicamento from '../models/Medicamento.js';
+import Medicamento from "../models/Medicamento.js";
 
 // Crear medicamento
 export const crearMedicamento = async (req, res) => {
@@ -7,7 +7,7 @@ export const crearMedicamento = async (req, res) => {
     await nuevo.save();
     res.status(201).json(nuevo);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al crear medicamento', error });
+    res.status(400).json({ mensaje: "Error al crear medicamento", error });
   }
 };
 
@@ -17,7 +17,7 @@ export const obtenerMedicamentos = async (req, res) => {
     const lista = await Medicamento.find();
     res.json(lista);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener medicamentos', error });
+    res.status(500).json({ mensaje: "Error al obtener medicamentos", error });
   }
 };
 
@@ -25,20 +25,24 @@ export const obtenerMedicamentos = async (req, res) => {
 export const obtenerMedicamento = async (req, res) => {
   try {
     const item = await Medicamento.findById(req.params.id);
-    if (!item) return res.status(404).json({ mensaje: 'No encontrado' });
+    if (!item) return res.status(404).json({ mensaje: "No encontrado" });
     res.json(item);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener medicamento', error });
+    res.status(500).json({ mensaje: "Error al obtener medicamento", error });
   }
 };
 
 // Actualizar
 export const actualizarMedicamento = async (req, res) => {
   try {
-    const actualizado = await Medicamento.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const actualizado = await Medicamento.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     res.json(actualizado);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al actualizar medicamento', error });
+    res.status(400).json({ mensaje: "Error al actualizar medicamento", error });
   }
 };
 
@@ -46,8 +50,8 @@ export const actualizarMedicamento = async (req, res) => {
 export const eliminarMedicamento = async (req, res) => {
   try {
     await Medicamento.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Medicamento eliminado' });
+    res.json({ mensaje: "Medicamento eliminado" });
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar medicamento', error });
+    res.status(500).json({ mensaje: "Error al eliminar medicamento", error });
   }
 };

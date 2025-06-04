@@ -1,4 +1,4 @@
-import Venta from '../models/Venta.js';
+import Venta from "../models/Venta.js";
 
 // Crear venta
 export const crearVenta = async (req, res) => {
@@ -7,7 +7,7 @@ export const crearVenta = async (req, res) => {
     await nuevaVenta.save();
     res.status(201).json(nuevaVenta);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al registrar la venta', error });
+    res.status(400).json({ mensaje: "Error al registrar la venta", error });
   }
 };
 
@@ -17,7 +17,7 @@ export const obtenerVentas = async (req, res) => {
     const ventas = await Venta.find();
     res.json(ventas);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener ventas', error });
+    res.status(500).json({ mensaje: "Error al obtener ventas", error });
   }
 };
 
@@ -25,20 +25,24 @@ export const obtenerVentas = async (req, res) => {
 export const obtenerVenta = async (req, res) => {
   try {
     const venta = await Venta.findById(req.params.id);
-    if (!venta) return res.status(404).json({ mensaje: 'Venta no encontrada' });
+    if (!venta) return res.status(404).json({ mensaje: "Venta no encontrada" });
     res.json(venta);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener la venta', error });
+    res.status(500).json({ mensaje: "Error al obtener la venta", error });
   }
 };
 
 // Actualizar una venta
 export const actualizarVenta = async (req, res) => {
   try {
-    const ventaActualizada = await Venta.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const ventaActualizada = await Venta.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     res.json(ventaActualizada);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al actualizar la venta', error });
+    res.status(400).json({ mensaje: "Error al actualizar la venta", error });
   }
 };
 
@@ -46,8 +50,8 @@ export const actualizarVenta = async (req, res) => {
 export const eliminarVenta = async (req, res) => {
   try {
     await Venta.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Venta eliminada correctamente' });
+    res.json({ mensaje: "Venta eliminada correctamente" });
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar la venta', error });
+    res.status(500).json({ mensaje: "Error al eliminar la venta", error });
   }
 };

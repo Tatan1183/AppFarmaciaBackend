@@ -1,4 +1,4 @@
-import Empleado from '../models/Empleado.js';
+import Empleado from "../models/Empleado.js";
 
 // Crear empleado
 export const crearEmpleado = async (req, res) => {
@@ -7,7 +7,7 @@ export const crearEmpleado = async (req, res) => {
     await nuevo.save();
     res.status(201).json(nuevo);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al crear empleado', error });
+    res.status(400).json({ mensaje: "Error al crear empleado", error });
   }
 };
 
@@ -17,7 +17,7 @@ export const obtenerEmpleados = async (req, res) => {
     const lista = await Empleado.find();
     res.json(lista);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener empleados', error });
+    res.status(500).json({ mensaje: "Error al obtener empleados", error });
   }
 };
 
@@ -25,20 +25,25 @@ export const obtenerEmpleados = async (req, res) => {
 export const obtenerEmpleado = async (req, res) => {
   try {
     const item = await Empleado.findById(req.params.id);
-    if (!item) return res.status(404).json({ mensaje: 'Empleado no encontrado' });
+    if (!item)
+      return res.status(404).json({ mensaje: "Empleado no encontrado" });
     res.json(item);
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener empleado', error });
+    res.status(500).json({ mensaje: "Error al obtener empleado", error });
   }
 };
 
 // Actualizar
 export const actualizarEmpleado = async (req, res) => {
   try {
-    const actualizado = await Empleado.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const actualizado = await Empleado.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     res.json(actualizado);
   } catch (error) {
-    res.status(400).json({ mensaje: 'Error al actualizar empleado', error });
+    res.status(400).json({ mensaje: "Error al actualizar empleado", error });
   }
 };
 
@@ -46,8 +51,8 @@ export const actualizarEmpleado = async (req, res) => {
 export const eliminarEmpleado = async (req, res) => {
   try {
     await Empleado.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Empleado eliminado' });
+    res.json({ mensaje: "Empleado eliminado" });
   } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar empleado', error });
+    res.status(500).json({ mensaje: "Error al eliminar empleado", error });
   }
 };
